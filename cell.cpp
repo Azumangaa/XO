@@ -1,55 +1,31 @@
 #include "cell.h"
+#include <string>
+#include <map>
 
 cell::cell( cell* topLeft, cell* top, cell* topRight, cell* right, cell* downRight, cell* down, cell* downLeft, cell* left )
 {
-    tl = topLeft;
-    t = top;
-    tr = topRight;
-    r = right;
-    dr = downRight;
-    d = down;
-    dl = downLeft;
-    l = left;
+    dirrections["top"] = top;
+    dirrections["down"] = down;
+    dirrections["left"] = left;
+    dirrections["right"] = right;
+    dirrections["topleft"] = topLeft;
+    dirrections["downright"] = downRight;
+    dirrections["downleft"] = downLeft;
+    dirrections["topright"] = topRight;
     exst = true;
     fll = 0;
-}
-
-bool cell::exist(){
-    return exst;
 }
 
 int cell::filled(){
     return fll;
 }
 
-cell* cell::moveDown(){
-    return d;
+cell* cell::move( std::string dirrection ) throw(int){
+
+    if( !dirrections[dirrection]->exist() ) throw(0);
+    return dirrections[dirrection];
 }
 
-cell* cell::moveLeft(){
-    return l;
-}
-
-cell* cell::moveDownLeft(){
-    return dl;
-}
-
-cell* cell::moveRight(){
-    return r;
-}
-
-cell* cell::moveDownRight(){
-    return dr;
-}
-
-cell* cell::moveTop(){
-    return t;
-}
-
-cell* cell::moveTopLeft(){
-    return tl;
-}
-
-cell* cell::moveTopRight(){
-    return tr;
+bool cell::exist(){
+    return exst;
 }

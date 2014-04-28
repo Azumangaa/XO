@@ -1,5 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
+#include <string>
+#include <map>
 
 class cell
 {
@@ -7,26 +9,11 @@ public:
     cell( cell* topLeft, cell* top, cell* topRight, cell* right, cell* downRight, cell* down, cell* downLeft, cell* left );
     cell(bool empty);
     int filled();
-    cell* moveTopLeft();
-    cell* moveTop();
-    cell* moveTopRight();
-    cell* moveRight();
-    cell* moveDownRight();
-    cell* moveDown();
-    cell* moveDownLeft();
-    cell* moveLeft();
-
+    cell* move( std::string dirrection ) throw(int);
     bool exist();
 
 private:
-    cell *tl;
-    cell *t;
-    cell *tr;
-    cell *r;
-    cell *dr;
-    cell *d;
-    cell *dl;
-    cell *l;
+    std::map <std::string,cell*> dirrections;
 /*
  *                    tl t tr
  *                      ###
