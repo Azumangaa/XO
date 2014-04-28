@@ -5,11 +5,16 @@
 class gameField
 {
 public:
-    gameField();
+    gameField( int size, int countForWin);
+    int check( int posX,int posY );
+    int** getField();
 
 private:
-    cell** cells;
+    cell** clls;
+    int sz;
+    int cntFrWn;
 
+    void buildField();
 };
 
 #endif // GAMEFIELD_H
